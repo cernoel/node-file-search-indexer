@@ -1,0 +1,39 @@
+{
+  "name": "node-file-search-indexer",
+  "description": "a little web-Service which indexes files",
+  "version": "0.0.1",
+  "author": {
+    "name": "rumpelstielzchen"
+  },
+  "contributors": [
+    {
+      "name": "rumpelstielzchen"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/rumpelstiel/node-file-search-indexer.git"
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "filewalker": "^0.1.2",
+    "fs": "0.0.2",
+    "http": "0.0.0",
+    "isnumeric": "^0.3.1",
+    "nedb": "^1.2.1"
+  },
+  "optionalDependencies": {},
+  "devDependencies": {},
+  "engine": [
+    "node >= 0.10"
+  ],
+  "main": "email",
+  "maintainers": [
+    {
+      "name": "rumpelstielzchen",
+      "email": "plexxus@gmail.com"
+    }
+  ],
+  "directories": {},
+  "readme": "ERROR: No README data found!"
+}
