@@ -29,13 +29,9 @@ app.get('/:a?/:b?', function (req,res) {
 	htmlBody = '';
 
 	var param = '';
-
-	console.log('query: ' + req.query['nummer']);
-
-	console.log('param: ' + req.params.b);
 	
 	if(req.params.b == undefined && req.query['nummer'] == undefined) {
-		console.log('fuk query');
+		// no parameter, do nothing
 	} else {
 		if (req.params.b == undefined) { param = req.query['nummer']; };
 		if (req.query['nummer'] == undefined) { param = req.params.b; };
@@ -46,12 +42,11 @@ app.get('/:a?/:b?', function (req,res) {
 			if (isNumeric(param)) {
 				findWhat = param;
 				var rePattern = new RegExp(findWhat);
-				console.log(rePattern);
 				
 				db.find({id: rePattern}, function (err, docs) {
 					// generate htmlBody
 					docs.forEach(function(item){
-						htmlBody = htmlBody + '<tr><td>' + item.path + '</td>' + '<td><a href="/get/' + item._id + '">Download</a>' + '</td></tr>'
+						htmlBody = htmlBody + '<tr><td>' + item.path + '</td>' + '<td><a href="/get/' + item._id + '" target="_blank">Download</a>' + '</td></tr>'
 					})
 							
 					res.send(htmlHeader + htmlBody + htmlEnd);
@@ -62,8 +57,11 @@ app.get('/:a?/:b?', function (req,res) {
 		break;
 		case 'get':
 			db.find({_id: param}, function (err, docs) {
-				console.log('SendFile: ' +  docs[0].path);
-				res.sendFile(docs[0].path);
+				if (docs.length > 0) {
+					res.sendFile(docs[0].path);
+				} else {
+					res.send('<h1>Document not found</h1>');
+				}
 			});
 			break;
 		default:
